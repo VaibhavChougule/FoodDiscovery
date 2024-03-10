@@ -22,7 +22,7 @@ function LoginResto() {
         console.log("token not provided")
       }
       else{
-        document.cookie = token;
+        document.cookie = `owner=${token}`;
       }
 
       navigate('/owner')

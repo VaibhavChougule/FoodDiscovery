@@ -22,6 +22,7 @@ function RegisterResto() {
 
     const registerResponse = await axios.post('http://127.0.0.1:3009/api/registerResto' , formData)
     console.log(registerResponse);
+    alert("successfully registered soon we will contact you.")
 
     
   }
@@ -36,7 +37,7 @@ function RegisterResto() {
             <Link to={'/login'} className='text-blue-600'>"Login</Link>
           </div>
             
-            <form action="/registerResto" method='post' className='flex flex-col p-3'>
+            <form className='flex flex-col p-3'>
 
               <input type="text" name="restoName" className='w-3/5 m-3' placeholder='Enter name of your Restorent' onChange={(e) =>{setRestoName(e.target.value)}} />
 
@@ -48,7 +49,7 @@ function RegisterResto() {
 
               <input type="password" name="password" className='w-3/5 m-3' placeholder='Create Strong Password' onChange={(e) =>{setrestoPassword(e.target.value)}}  />
 
-              <input type="button" onClick={handleRegister} name='' value="Register" className='bg-green-300 hover:bg-green-200 rounded w-3/5 m-3' />
+              <input type="submit" onClick={handleRegister} name='' value="Register" className='bg-green-300 hover:bg-green-200 rounded w-3/5 m-3' />
 
 
             </form>

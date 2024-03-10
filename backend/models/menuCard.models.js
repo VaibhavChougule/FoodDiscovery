@@ -3,12 +3,12 @@ import mongoose from "mongoose";
 const MenuSchema = new mongoose.Schema({
     menus:[String],
     ownerRestoId:{
-        type:String,
+        type:mongoose.Schema.Types.ObjectId,
         required:true,
         unique:true
         
     }
-})
+} , {timestamps:true})
 
 export const RestoMenu = mongoose.model('RestoMenu' , MenuSchema);
 

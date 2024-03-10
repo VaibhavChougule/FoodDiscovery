@@ -111,12 +111,14 @@ let AdminLogout = ()=>{
 
   return (
     <>
+
+    <div className='text-center'><h1 className='text-2xl font-bold'>Admin Dashboard</h1></div>
     
     
        {
         
         req.map((ele, index) => (
-          <div key={index} className='h-16 w-2/4 bg-slate-100'>
+          <div key={index} className='h-16 w-2/4 bg-slate-100 '>
             <table className='m-6' border={2}>
               <tbody>
               <tr className='bg-slate-100 border-2 border-red-500'>
