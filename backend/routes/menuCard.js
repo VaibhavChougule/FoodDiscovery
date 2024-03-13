@@ -45,7 +45,9 @@ router.post('/api/menuCard' , async (req , res)=>{
 //if menucard is not present create
     const newRestoMenu = new RestoMenu({
         menus:menuItems,
-        ownerRestoId:resForObj
+        ownerRestoId:resForObj,
+        RestoName:resForObj.RestoName,
+        RestoAddress:resForObj.RestoAddress
     })
     
     const isMenuSaved = await newRestoMenu.save();

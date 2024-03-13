@@ -15,16 +15,18 @@ function LoginResto() {
       restoId:restoId,
       password:password
     }
-      const restoLoginResponse = await axios.post('http://127.0.0.1:3009/api/RestoLogin' , loginCredentials)
+    alert("loging in")
+      const restoLoginResponse = await axios.post('/api/RestoLogin' , loginCredentials)
       console.log("restoLogin response" , restoLoginResponse)
       const token = restoLoginResponse.data.token;
       if(token == undefined){
+        alert("token galt hai")
         console.log("token not provided")
       }
       else{
         document.cookie = `owner=${token}`;
       }
-
+      alert('succesfull')
       navigate('/owner')
       //console.log("done");
   }

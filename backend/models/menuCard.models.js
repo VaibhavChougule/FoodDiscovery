@@ -7,6 +7,14 @@ const MenuSchema = new mongoose.Schema({
         required:true,
         unique:true
         
+    },
+    RestoName:{
+        type:String,
+        required:true
+    },
+    RestoAddress:{
+        type:String,
+        required:true
     }
 } , {timestamps:true})
 

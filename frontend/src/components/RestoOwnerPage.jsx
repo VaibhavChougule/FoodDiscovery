@@ -52,7 +52,7 @@ function RestoOwnerPage() {
 
   //send menu card to backend to save
   async function saveMenuItems(){
-    const menucardres = await axios.post('http://127.0.0.1:3009/api/menuCard' , {
+    const menucardres = await axios.post('/api/menuCard' , {
       menuCard:menuItems,
       ck:document.cookie
        } )
@@ -72,7 +72,7 @@ function RestoOwnerPage() {
 
 
 
-  let lastMenu = localStorage.getItem('lastMenu') || ['empty'];
+  let lastMenu = localStorage.getItem('lastMenu') || 'empty';
   console.log(lastMenu);
   let a = lastMenu.split(',');
   console.log("spl" , a);
@@ -88,8 +88,8 @@ function RestoOwnerPage() {
         <h1>Data:{`${day}-${month}-${year}`}</h1>
         <button onClick={restorentOwner}>send cookie</button>
       </div> */}
-
-      <div className='min-h-96 w-3/4 bg-red-200 flex flex-col items-center'>
+      <div className='h-screen w-screen flex justify-center '>
+      <div className='h-96 w-3/4 bg-red-200 flex flex-col items-center'>
       <h1>Name of Restorent</h1>
       <input type="text"
       ref={itemInput}
@@ -136,6 +136,7 @@ function RestoOwnerPage() {
           })
         }
       </div>
+</div>
 </div>
     </>
   )

@@ -20,7 +20,7 @@ function RegisterResto() {
       restoPassword:restoPassword
     }
 
-    const registerResponse = await axios.post('http://127.0.0.1:3009/api/registerResto' , formData)
+    const registerResponse = await axios.post('/api/registerResto' , formData)
     console.log(registerResponse);
     alert("successfully registered soon we will contact you.")
 
