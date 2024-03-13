@@ -29,31 +29,62 @@ function RegisterResto() {
   return (
     <>
 
-    <div className='h-screen w-screen bg-slate-300 flex justify-center items-center'>
-      
-        <div className='h-3/5 w-2/4 bg-slate-400'>
-          <div className='flex flex-row justify-center'>
-            <p>Already Have an Account </p>
-            <Link to={'/login'} className='text-blue-600'>"Login</Link>
-          </div>
-            
-            <form className='flex flex-col p-3'>
-
-              <input type="text" name="restoName" className='w-3/5 m-3' placeholder='Enter name of your Restorent' onChange={(e) =>{setRestoName(e.target.value)}} />
-
-              <input type="text" name="address" className='w-3/5 m-3' placeholder='Enter Address of your Restorent' onChange={(e) =>{setrestoAddress(e.target.value)}}  />
-
-              <input type="text" name="ownerName" className='w-3/5 m-3' placeholder='Enter name of Restorent Owner'  onChange={(e) =>{setrestoOwner(e.target.value)}} />
-
-              <input type="number" name="ownerContact" className='w-3/5 m-3' placeholder='Enter Mobile No. of Restorent Owner' onChange={(e) =>{setownerContact(e.target.value)}}  />
-
-              <input type="password" name="password" className='w-3/5 m-3' placeholder='Create Strong Password' onChange={(e) =>{setrestoPassword(e.target.value)}}  />
-
-              <input type="submit" onClick={handleRegister} name='' value="Register" className='bg-green-300 hover:bg-green-200 rounded w-3/5 m-3' />
-
-
-            </form>
+<div className='h-screen w-screen bg-slate-300 flex justify-center items-center'>
+      <div className='h-3/5 w-full sm:w-2/4 bg-slate-400 rounded-md p-8'>
+        <div className='flex flex-row justify-center mb-4'>
+          <p className='text-gray-700 mr-2'>Already Have an Account </p>
+          <Link to={'/login'} className='text-blue-600'>Login</Link>
         </div>
+
+        <form className='flex flex-col'>
+          <input
+            type="text"
+            name="restoName"
+            className='w-full sm:w-3/5 p-2 mb-4 rounded'
+            placeholder='Enter name of your Restaurant'
+            onChange={(e) => { setRestoName(e.target.value) }}
+          />
+
+          <input
+            type="text"
+            name="address"
+            className='w-full sm:w-3/5 p-2 mb-4 rounded'
+            placeholder='Enter Address of your Restaurant'
+            onChange={(e) => { setrestoAddress(e.target.value) }}
+          />
+
+          <input
+            type="text"
+            name="ownerName"
+            className='w-full sm:w-3/5 p-2 mb-4 rounded'
+            placeholder='Enter name of Restaurant Owner'
+            onChange={(e) => { setrestoOwner(e.target.value) }}
+          />
+
+          <input
+            type="number"
+            name="ownerContact"
+            className='w-full sm:w-3/5 p-2 mb-4 rounded'
+            placeholder='Enter Mobile No. of Restaurant Owner'
+            onChange={(e) => { setownerContact(e.target.value) }}
+          />
+
+          <input
+            type="password"
+            name="password"
+            className='w-full sm:w-3/5 p-2 mb-4 rounded'
+            placeholder='Create Strong Password'
+            onChange={(e) => { setrestoPassword(e.target.value) }}
+          />
+
+          <input
+            type="submit"
+            onClick={handleRegister}
+            value="Register"
+            className='bg-green-300 hover:bg-green-200 rounded w-full sm:w-3/5 p-2'
+          />
+        </form>
+      </div>
     </div>
       
     </>

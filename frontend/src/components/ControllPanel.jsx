@@ -112,45 +112,45 @@ let AdminLogout = ()=>{
   return (
     <>
 
-    <div className='text-center'><h1 className='text-2xl font-bold'>Admin Dashboard</h1></div>
-    
-    
-       {
-        
-        req.map((ele, index) => (
-          <div key={index} className='h-16 w-2/4 bg-slate-100 '>
-            <table className='m-6' border={2}>
-              <tbody>
-              <tr className='bg-slate-100 border-2 border-red-500'>
-                <th className='border-2 border-black'>RestoName</th>
-                <th className='border-2 border-black'>RestoAddress</th>
-                <th className='border-2 border-black'>RestoOwner</th>
-                <th className='border-2 border-black'>OwnerContact</th>
-                <th className='border-2 border-black'>Accept</th>
-                <th className='border-2 border-black'>Reject</th>
-              </tr>
-              <tr>
-                <td className='border-2 border-black'>{ele['RestoName']}</td>
-                <td className='border-2 border-black'>{ele['RestoAddress']}</td>
-                <td className='border-2 border-black'>{ele['RestoOwner']}</td>
-                <td className='border-2 border-black'>{ele['OwnerContact']}</td>
-                <td className='border-2 border-black'><button className='bg-blue-700 rounded-sm hover:bg-blue-600 p-1 font-bold' onClick={(e)=>{handleAccept(e ,  ele)}}>Accept</button></td>
-                <td className='border-2 border-black'><button className='bg-blue-700 rounded-sm hover:bg-blue-600 p-1 font-bold' onClick={(e)=>{handleReject(e , ele)}}>Reject</button></td>
-              </tr>
-              </tbody>
-            </table>
+<div className='text-center'>
+  <h1 className='text-2xl font-bold mt-4'>Admin Dashboard</h1>
+</div>
 
-            
+{
+  req.map((ele, index) => (
+    <div key={index} className='mx-auto my-4 p-4 bg-white shadow-md max-w-3xl'>
+      <table className='w-full' border={2}>
+        <tbody>
+          <tr className='bg-gray-200 border-b-2 border-gray-500'>
+            <th className='py-2 px-4 border-r-2 border-gray-500'>RestoName</th>
+            <th className='py-2 px-4 border-r-2 border-gray-500'>RestoAddress</th>
+            <th className='py-2 px-4 border-r-2 border-gray-500'>RestoOwner</th>
+            <th className='py-2 px-4 border-r-2 border-gray-500'>OwnerContact</th>
+            <th className='py-2 px-4 border-r-2 border-gray-500'>Accept</th>
+            <th className='py-2 px-4'>Reject</th>
+          </tr>
+          <tr className='border-b-2 border-gray-500'>
+            <td className='py-2 px-4'>{ele['RestoName']}</td>
+            <td className='py-2 px-4'>{ele['RestoAddress']}</td>
+            <td className='py-2 px-4'>{ele['RestoOwner']}</td>
+            <td className='py-2 px-4'>{ele['OwnerContact']}</td>
+            <td className='py-2 px-4'>
+              <button className='bg-blue-700 rounded-sm hover:bg-blue-600 p-1 font-bold' onClick={(e) => { handleAccept(e, ele) }}>Accept</button>
+            </td>
+            <td className='py-2 px-4'>
+              <button className='bg-blue-700 rounded-sm hover:bg-blue-600 p-1 font-bold' onClick={(e) => { handleReject(e, ele) }}>Reject</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  ))
+}
 
-            
-          </div>
-        ))
+<div className='absolute top-3 right-4'>
+  <button className='bg-red-700 rounded-sm hover:bg-red-600 p-1 font-bold' onClick={AdminLogout}>LOGOUT</button>
+</div>
 
-        
-       }
-      <div className='absolute top-3 right-4'>
-              <button className='bg-red-700 rounded-sm hover:bg-red-600 p-1 font-bold' onClick={AdminLogout}>LOGOUT</button>
-      </div>
       
     </>
   )

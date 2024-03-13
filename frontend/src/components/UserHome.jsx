@@ -37,38 +37,26 @@ function UserHome() {
     console.log(details);
     return (
         <>
-            {/* <div onLoad={getDetails()}>Welcome</div> */}
-            {
-                details?.map((val, ind) => {
-                    return (
-                        <div className="bg-gray-200 p-4 m-1 border-2 border-slate-600 flex flex-row justify-evenly">
-                            <div className="mb-4">
-                                <p className="text-xl font-bold">Name: {val.name}</p>
-                            </div>
-                            <div>
-                                <h1>
-                                    Today`s Menu
-                                </h1>
-                                <ul className="list-disc pl-4">
-                                    {
-                                        val.menu.map((item, index) => {
-                                            return (
-                                                <li>{item}</li>
-                                            )
-
-                                        })
-                                    }
-
-
-                                </ul>
-                            </div>
-                            <div className="mb-4">
-                                <p className="text-xl font-bold">Address: {val.address}</p>
-                            </div>
-                        </div>
-                    )
-                })
-            }
+           <div className="container mx-auto my-4">
+      {details.map((val, ind) => (
+        <div key={ind} className="bg-gray-200 p-6 mb-6 border-2 border-slate-600 rounded-md shadow-md">
+          <div className="mb-4">
+            <p className="text-2xl font-bold text-indigo-800">Name: {val.name}</p>
+          </div>
+          <div>
+            <h1 className="text-lg font-semibold mb-2">Today's Menu</h1>
+            <ul className="list-disc pl-4">
+              {val.menu.map((item, index) => (
+                <li key={index} className="text-gray-700">{item}</li>
+              ))}
+            </ul>
+          </div>
+          <div className="mt-4">
+            <p className="text-2xl font-bold text-indigo-800">Address: {val.address}</p>
+          </div>
+        </div>
+      ))}
+    </div>
 
 
         </>

@@ -33,22 +33,31 @@ function LoginResto() {
   return (
     <>
       <div className='h-screen w-screen bg-slate-300 flex justify-center items-center'>
-      
-      <div className='h-3/5 w-2/4 bg-slate-400'>
-        
-          
-          
+  <div className='h-3/5 w-full sm:w-2/4 bg-slate-400 rounded-md shadow-md p-8'>
+    <input
+      type="text"
+      onChange={(e) => { setRestoId(e.target.value) }}
+      className='w-full p-2 mb-4 rounded'
+      placeholder='Enter Id of your Restaurant'
+    />
 
-            <input type="text"  onChange={(e)=>{setRestoId(e.target.value)}}  className='w-3/5 m-3' placeholder='Enter Id of your Restorent' />
+    <input
+      type="password"
+      onChange={(e) => { setPassword(e.target.value) }}
+      className='w-full p-2 mb-4 rounded'
+      placeholder='Enter Password'
+    />
 
-            <input type="password"  onChange={(e)=>{setPassword(e.target.value)}} className='w-3/5 m-3' placeholder='Enter Password' />
-
-            <input type="button"  value="Login" onClick={handleLogin} className='bg-green-300 hover:bg-green-200 rounded w-3/5 m-3' />
-
-
-          
-      </div>
+    <input
+      type="button"
+      value="Login"
+      onClick={handleLogin}
+      className='bg-green-300 hover:bg-green-200 rounded w-full p-2'
+    />
   </div>
+</div>
+
+
     </>
   )
 }
