@@ -44,7 +44,7 @@ const ipWhitelistMiddleware = (req, res, next) => {
 app.use(cors())
 app.use(express.json())
 app.use(cookieParser())
-app.use('/api/getResto' , getResto)
+app.use('/' , getResto)
 app.use('/' , AdminLogin)
 app.use('/' , homeRoute);
 app.use('/' , demoRoute)
