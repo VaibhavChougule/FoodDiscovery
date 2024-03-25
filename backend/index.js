@@ -51,7 +51,7 @@ app.use('/' , demoRoute)
 
 app.use('/' , registerRestoRoute);
 app.use('/' , verifyAdmin )
-app.use('/RestoLogin' , RestoLogin)
+app.use('/' , RestoLogin)
 app.use('/' , acceptResto)
 
 app.use('/' , seeCookie)
