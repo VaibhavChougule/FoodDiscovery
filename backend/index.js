@@ -4,6 +4,7 @@ import cookieParser from 'cookie-parser'
 import dbConnect from './db/DBprovider.js';
 
 import {router as homeRoute}  from './routes/home.js';
+import {router as demoRoute}  from './routes/demo.js';
 import {router as registerRestoRoute}  from './routes/registerResto.js';
 import {router as AdminLogin}  from './routes/AdminLogin.js';
 import {router as verifyAdmin} from './routes/verifyAdmin.js'
@@ -46,6 +47,7 @@ app.use(cookieParser())
 app.use('/api/getResto' , getResto)
 app.use('/' , AdminLogin)
 app.use('/' , homeRoute);
+app.use('/' , demoRoute)
 
 app.use('/' , registerRestoRoute);
 app.use('/' , verifyAdmin )
