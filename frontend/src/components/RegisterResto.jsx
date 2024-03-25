@@ -78,7 +78,7 @@ function RegisterResto() {
           />
 
           <input
-            type="submit"
+            type="button"
             onClick={handleRegister}
             value="Register"
             className='bg-green-300 hover:bg-green-200 rounded w-full sm:w-3/5 p-2'
