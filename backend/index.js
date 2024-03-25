@@ -44,10 +44,10 @@ app.use(cors())
 app.use(express.json())
 app.use(cookieParser())
 app.use('/api/getResto' , getResto)
+app.use('/' , AdminLogin)
 app.use('/' , homeRoute);
 
 app.use('/' , registerRestoRoute);
-app.use('/' , AdminLogin)
 app.use('/' , verifyAdmin )
 app.use('/RestoLogin' , RestoLogin)
 app.use('/' , acceptResto)
