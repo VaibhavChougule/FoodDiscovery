@@ -49,7 +49,7 @@ app.use('/' , homeRoute);
 app.use('/' , registerRestoRoute);
 app.use('/' , AdminLogin)
 app.use('/' , verifyAdmin )
-app.use('/' , RestoLogin)
+app.use('/RestoLogin' , RestoLogin)
 app.use('/' , acceptResto)
 
 app.use('/' , seeCookie)
