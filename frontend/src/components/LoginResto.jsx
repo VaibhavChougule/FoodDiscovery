@@ -16,7 +16,7 @@ function LoginResto() {
       password:password
     }
     alert("loging in")
-      const restoLoginResponse = await axios.post('/api/RestoLogin' , loginCredentials)
+      const restoLoginResponse = await axios.post('https://food-discovery-server.vercel.app/api/RestoLogin' , loginCredentials)
       console.log("restoLogin response" , restoLoginResponse)
       const token = restoLoginResponse.data.token;
       if(token == undefined){

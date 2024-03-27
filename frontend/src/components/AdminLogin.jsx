@@ -20,7 +20,7 @@ const LoginPage = () => {
     window.confirm('Are you sure to login')
     // Add your login logic here
     console.log('Logging in with:', { username, password });
-    const AdminLoginResponse = await axios.post('/api/AdminLogin' , {username:username , password:password})
+    const AdminLoginResponse = await axios.post('https://food-discovery-server.vercel.app/api/AdminLogin' , {username:username , password:password})
     console.log("response" , AdminLoginResponse.data)
      
     if(AdminLoginResponse.data.verification == true){

@@ -20,7 +20,7 @@ function RegisterResto() {
       restoPassword:restoPassword
     }
 
-    const registerResponse = await axios.post('/api/registerResto' , formData)
+    const registerResponse = await axios.post('https://food-discovery-server.vercel.app/api/registerResto' , formData)
     console.log(registerResponse);
     alert("successfully registered soon we will contact you.")
 

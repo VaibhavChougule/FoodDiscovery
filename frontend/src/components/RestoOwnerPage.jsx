@@ -52,7 +52,7 @@ function RestoOwnerPage() {
 
   //send menu card to backend to save
   async function saveMenuItems() {
-    const menucardres = await axios.post('/api/menuCard', {
+    const menucardres = await axios.post('https://food-discovery-server.vercel.app/api/menuCard', {
       menuCard: menuItems,
       ck: document.cookie
     })

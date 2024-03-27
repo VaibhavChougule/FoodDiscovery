@@ -34,12 +34,12 @@ function ControllPanel() {
    }
    console.log("params" , params)
 
-   const verify = axios.post('/api/verifyAdmin' , params )
+   const verify = axios.post('https://food-discovery-server.vercel.app/api/verifyAdmin' , params )
    verify.then((d)=>{
     console.log("verify status" , d.data.status)
     if(d.data.status == "success"){
 
-      const data = axios.get('/api/registerResto')
+      const data = axios.get('https://food-discovery-server.vercel.app/api/registerResto')
  data.then((data) =>{
     console.log("data:",data.data);
     setReq(data.data)
@@ -88,7 +88,7 @@ async function handleAccept(e , ele){
     OwnerContact:ele.OwnerContact,
     RestoPassword:ele.RestoPassword
   }
-  const acceptResponse = await axios.post('/api/verifiedResto' , acceptedResto);
+  const acceptResponse = await axios.post('https://food-discovery-server.vercel.app/api/verifiedResto' , acceptedResto);
   console.log(acceptResponse);
   location.reload();
   
@@ -98,7 +98,7 @@ async function handleAccept(e , ele){
 
 async function handleReject(e , ele){
   console.log(ele);
-  const rejectResponse = await axios.post('/api/rejectedResto' , {RestoId:ele.OwnerContact});
+  const rejectResponse = await axios.post('https://food-discovery-server.vercel.app/api/rejectedResto' , {RestoId:ele.OwnerContact});
   console.log(rejectResponse);
   location.reload();
 }
