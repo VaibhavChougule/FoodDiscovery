@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 import axios from 'axios'
@@ -13,13 +13,13 @@ function RegisterResto() {
   const navigate = useNavigate();
 
 
-  const checkLogin = ()=>{
+  useEffect(()=>{
     console.log(document.cookie)
     let ck = document.cookie.split('=');
     console.log("cok",ck[1] , "type" , typeof ck[1]);
     let rt = ck[1];
     console.log("rt" ,rt);
-    let login = axios.get('https://food-discovery-server.vercel.app/api/verifyLogin' , {cok:rt});
+    let login = axios.post('https://food-discovery-server.vercel.app/api/verifyLogin' , {cok:rt});
     login.then((response)=>{
       console.log(response.data.status)
       if(response.data.status == true){
@@ -34,8 +34,8 @@ function RegisterResto() {
       console.log("error network "  , err)
     })
 
-  }
-  checkLogin();
+  } , [])
+  //checkLogin();
 
   const handleRegister = async ()=>{
 

@@ -5,7 +5,7 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
  server:{
   proxy:{
-    '/api':'https://food-discovery-server.vercel.app'
+    '/api':'http://127.0.0.1:3009'
   }
  }
 })
