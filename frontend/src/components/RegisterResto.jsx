@@ -16,13 +16,17 @@ function RegisterResto() {
   const checkLogin = ()=>{
     console.log(document.cookie)
     let ck = document.cookie.split('=');
-    console.log(ck[1]);
-    let login = axios.get('https://food-discovery-server.vercel.app/api/verifyLogin' , ck[1]);
+    console.log("cok",ck[1] , "type" , typeof ck[1]);
+    let rt = ck[1];
+    console.log("rt" ,rt);
+    let login = axios.get('https://food-discovery-server.vercel.app/api/verifyLogin' , {cok:rt});
     login.then((response)=>{
+      console.log(response.data.status)
       if(response.data.status == true){
         navigate('/owner')
       }
       else{
+        console.log(response.data.status)
         console.log("plz login")
       }
     })

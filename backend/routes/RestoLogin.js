@@ -22,13 +22,16 @@ router.post('/api/RestoLogin' , async (req , res) =>{
 })
 
 router.get('/api/verifyLogin' , async (req , res)=>{
-    const token = req.body;
+    const token = req.cookies.owner;
+    console.log(req.cookies.owner)
     let verificationStatus = await getAdmin(token);
+    console.log("stauts",verificationStatus)
     if(verificationStatus == true){
+        console.log("if is running")
         res.send({status:true});
     }
     else{
-        res.send({status:false})
+        res.send({status:verificationStatus})
     }
 }) 
 
