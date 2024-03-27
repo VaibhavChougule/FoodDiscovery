@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 import axios from 'axios'
 
@@ -9,6 +9,29 @@ function RegisterResto() {
   const [restoOwner , setrestoOwner] = useState('');
   const [ownerContact , setownerContact] = useState('');
   const [restoPassword , setrestoPassword] = useState('');
+
+  const navigate = useNavigate();
+
+
+  const checkLogin = ()=>{
+    console.log(document.cookie)
+    let ck = document.cookie.split('=');
+    console.log(ck[1]);
+    let login = axios.get('https://food-discovery-server.vercel.app/api/verifyLogin' , ck[1]);
+    login.then((response)=>{
+      if(response.data.status == true){
+        navigate('/owner')
+      }
+      else{
+        console.log("plz login")
+      }
+    })
+    .catch((err)=>{
+      console.log("error network "  , err)
+    })
+
+  }
+  checkLogin();
 
   const handleRegister = async ()=>{
 
