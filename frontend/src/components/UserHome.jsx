@@ -8,7 +8,7 @@ function UserHome() {
 
   useEffect(() => {
 
-    axios.get('/api/getResto')
+    axios.get('https://food-discovery-server.vercel.app/api/getResto')
       .then((response) => {
         setDetails(response.data);
         setStatus("");
