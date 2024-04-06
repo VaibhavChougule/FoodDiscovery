@@ -12,9 +12,15 @@ function RegisterResto() {
 
   const navigate = useNavigate();
 
-
+//if cookies already present then without login owner can acces dashboard
   useEffect(()=>{
     console.log(document.cookie)
+    if(document.cookie[0] !== 'o'){
+      console.log("login or register")
+    }
+    else{
+
+    
     let ck = document.cookie.split('=');
     console.log("cok",ck[1] , "type" , typeof ck[1]);
     let rt = ck[1];
@@ -33,11 +39,12 @@ function RegisterResto() {
     .catch((err)=>{
       console.log("error network "  , err)
     })
+  }
 
   } , [])
   //checkLogin();
 
-  const handleRegister = async ()=>{
+  const handleRegister =  ()=>{
 
     const formData = {
       restoName:restoName,
@@ -47,10 +54,18 @@ function RegisterResto() {
       restoPassword:restoPassword
     }
 
-    const registerResponse = await axios.post('https://food-discovery-server.vercel.app/api/registerResto' , formData)
-    console.log(registerResponse);
-    alert("successfully registered soon we will contact you.")
-
+    const registerResponse = axios.post('https://food-discovery-server.vercel.app/api/registerResto' , formData)
+    registerResponse
+    .then((response) =>{
+      console.log(response);
+      location.reload();
+      alert("successfully registered soon we will contact you.")
+    })
+    .catch((err) =>{
+      alert("Error While Registering Plz try Again.." , err)
+    })
+    
+    
     
   }
   return (

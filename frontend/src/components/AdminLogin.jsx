@@ -4,6 +4,7 @@ import {useNavigate} from 'react-router-dom'
 
 
 const LoginPage = () => {
+  const [visibility , setVisibility] = useState('none')
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate() 
@@ -20,7 +21,9 @@ const LoginPage = () => {
     window.confirm('Are you sure to login')
     // Add your login logic here
     console.log('Logging in with:', { username, password });
+    setVisibility('block')
     const AdminLoginResponse = await axios.post('https://food-discovery-server.vercel.app/api/AdminLogin' , {username:username , password:password})
+    setVisibility('none')
     console.log("response" , AdminLoginResponse.data)
      
     if(AdminLoginResponse.data.verification == true){
@@ -30,12 +33,15 @@ const LoginPage = () => {
         navigate('/admin/panel')
     }
     else{
+        setPassword('')
+        setUsername('')
         alert("wrong id or password")
     }
   };
 
   return (
-    <div style={styles.container}>
+    <div className='relative' style={styles.container}>
+      <div className= {`${visibility} h-12 w-28 bg-indigo-400 absolute top-10 text-center font-bold rounded-lg animate-pulse`}>Wait Logging In ....</div>
       <h1 style={styles.heading}>Admin Login</h1>
       <form style={styles.form}>
         <label style={styles.label} htmlFor="username">

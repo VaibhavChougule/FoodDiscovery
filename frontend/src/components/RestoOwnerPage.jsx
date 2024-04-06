@@ -8,7 +8,7 @@ function RestoOwnerPage() {
   let year = date.getFullYear();
   console.log(day, month, year);
 
-
+  const [loading , setLoading] = useState('none')
   //array of items in menu card card
 
   let [items, setItems] = useState([]);
@@ -26,13 +26,16 @@ function RestoOwnerPage() {
 
     console.log(menuItems);
     let li = document.createElement('li');
-    li.style.backgroundColor = 'white'
+    li.style.backgroundColor = '#63f5f8'
     li.style.margin = '2px'
+    li.style.padding = '4px'
+    li.style.border = 'solid 2px black'
+    li.style.borderRadius = '4px'
     li.innerHTML = menuItems[menuItems.length - 1];
     console.log(list.current)
     list.current.appendChild(li);
     //list.current
-
+      itemInput.current.value = ""
   }
 
   // async function restorentOwner(){
@@ -52,6 +55,7 @@ function RestoOwnerPage() {
 
   //send menu card to backend to save
   async function saveMenuItems() {
+    setLoading('block')
     const menucardres = await axios.post('https://food-discovery-server.vercel.app/api/menuCard', {
       menuCard: menuItems,
       ck: document.cookie
@@ -85,22 +89,24 @@ function RestoOwnerPage() {
   return (
     <>
       <div className='h-screen w-screen flex justify-center'>
-      <div className='h-96 w-3/4 bg-red-200 flex flex-col items-center p-6 rounded-md shadow-md'>
+      <div className={`${loading} h-20 w-24 absolute top-16 animate-pulse rounded-lg bg-slate-500 text-center flex items-center justify-center font-bold text-2xl`}>Saving</div>
+      <div className='w-3/4 min-h-20 bg-indigo-200 flex flex-col items-center p-6 rounded-md shadow-md'>
         <h1 className='text-2xl font-bold mb-4'>Name of Restaurant</h1>
         <input
           type="text"
           ref={itemInput}
           placeholder='Add items'
-          className='w-2/4 p-2 rounded-sm mb-2'
+          className='w-2/4 p-2 rounded-lg mb-2'
+          autoFocus
         />
         <input
           type="button"
           value="Add"
           onClick={addItems}
-          className='bg-blue-400 h-8 w-16 hover:bg-blue-500 mb-4'
+          className='bg-blue-400 h-8 w-16 hover:bg-blue-500 mb-4 rounded-md  border-2 border-slate-800 border-solid'
         />
 
-        <ol ref={list} className='bg-slate-500 p-2 mb-4'>
+        <ol ref={list} className='bg-slate-500 px-4 mb-4 rounded-lg font-semibold'>
           {/* {a.map((val, ind) => (
             <li key={ind} className='text-white'>{val}</li>
           ))} */}
@@ -113,7 +119,7 @@ function RestoOwnerPage() {
           className='bg-green-400 h-8 w-16 hover:bg-green-500'
         />
 
-        <div className='bg-slate-300 border-2 p-4 mt-4'>
+        <div className='bg-blue-300 border-2 p-4 mt-4'>
           <h1 className='font-bold mb-2'>Your Previous Menu card is:</h1>
 
           {a.map((val, ind) => (

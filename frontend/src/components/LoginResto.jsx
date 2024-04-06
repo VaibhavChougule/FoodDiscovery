@@ -9,30 +9,35 @@ function LoginResto() {
   const [restoId , setRestoId] = useState(null)
   const [password , setPassword] = useState(null)
 
+  const [loading , setLoading] = useState('none')
+
   const handleLogin = async()=>{
     alert(restoId)
     const loginCredentials ={
       restoId:restoId,
       password:password
     }
-    alert("loging in")
+    //alert("loging in")
+    setLoading('block')
       const restoLoginResponse = await axios.post('https://food-discovery-server.vercel.app/api/RestoLogin' , loginCredentials)
       console.log("restoLogin response" , restoLoginResponse)
       const token = restoLoginResponse.data.token;
       if(token == undefined){
-        alert("token galt hai")
+        alert("Wrong Login Credentials")
         console.log("token not provided")
       }
       else{
         document.cookie = `owner=${token}`;
+        
+        navigate('/owner')
       }
-      alert('succesfull')
-      navigate('/owner')
+      
       //console.log("done");
   }
   return (
     <>
       <div className='h-screen w-screen bg-slate-300 flex justify-center items-center'>
+        <div className={`${loading} h-20 w-24 absolute animate-ping rounded-lg bg-indigo-500 text-center flex items-center justify-center font-bold`}>Logging In</div>
   <div className='h-3/5 w-full sm:w-2/4 bg-slate-400 rounded-md shadow-md p-8'>
     <input
       type="text"
