@@ -1,10 +1,14 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import {useNavigate} from 'react-router-dom'
+import config from '../config';
+
+
+
 
 
 const LoginPage = () => {
-  const [visibility , setVisibility] = useState('none')
+  const [visibility , setVisibility] = useState('hidden')
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate() 
@@ -22,7 +26,7 @@ const LoginPage = () => {
     // Add your login logic here
     console.log('Logging in with:', { username, password });
     setVisibility('block')
-    const AdminLoginResponse = await axios.post('https://food-discovery-server.vercel.app/api/AdminLogin' , {username:username , password:password})
+    const AdminLoginResponse = await axios.post(`${config.API_URL}/AdminLogin` , {username:username , password:password})
     setVisibility('none')
     console.log("response" , AdminLoginResponse.data)
      
@@ -36,6 +40,7 @@ const LoginPage = () => {
         setPassword('')
         setUsername('')
         alert("wrong id or password")
+        setVisibility("hidden")
     }
   };
 

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
+import config from '../config';
 
 function ControllPanel() {
 
@@ -35,12 +36,14 @@ function ControllPanel() {
     console.log("params", params)
 
 
-    const verify = axios.post('https://food-discovery-server.vercel.app/api/verifyAdmin', params)
+    const verify = axios.post(`${config.API_URL}/verifyAdmin`, params)
+    //'https://food-discovery-server.vercel.app/api/'
     verify.then((d) => {
       console.log("verify status", d.data.status)
       if (d.data.status == "success") {
 
-        const data = axios.get('https://food-discovery-server.vercel.app/api/registerResto')
+        const data = axios.get(`${config.API_URL}/registerResto`)
+        //'https://food-discovery-server.vercel.app/api/'
         data.then((data) => {
           setLoading('animate-none')
           console.log("data:", data.data);
@@ -90,25 +93,27 @@ function ControllPanel() {
       OwnerContact: ele.OwnerContact,
       RestoPassword: ele.RestoPassword
     }
-    const acceptResponse = await axios.post('https://food-discovery-server.vercel.app/api/verifiedResto', acceptedResto);
+    const acceptResponse = await axios.post(`${config.API_URL}/verifiedResto`, acceptedResto);
     console.log(acceptResponse);
     location.reload();
-
+//'https://food-discovery-server.vercel.app/api/verifiedResto'
 
 
   }
 
   async function handleReject(e, ele) {
     console.log(ele);
-    const rejectResponse = await axios.post('https://food-discovery-server.vercel.app/api/rejectedResto', { RestoId: ele.OwnerContact });
+    const rejectResponse = await axios.post( `${config.API_URL}/rejectedResto`, { RestoId: ele.OwnerContact });
     console.log(rejectResponse);
     location.reload();
   }
+  //'https://food-discovery-server.vercel.app/api/'
 
   let AdminLogout = () => {
     console.log("deltein cookie");
-    document.cookie = "uid=; expires=Thu, 01 Jan 1970 00:00:00 UTC;";
+    document.cookie = "uid=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
     location.reload()
+    window.location.href = "/"
   }
 
   return (

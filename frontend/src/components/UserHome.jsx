@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import config from '../config';
 
 function UserHome() {
   const [details, setDetails] = useState([]);
@@ -7,14 +8,13 @@ function UserHome() {
   const [status, setStatus] = useState('Loading....');
 
   useEffect(() => {
-
-    axios.get('https://food-discovery-server.vercel.app/api/getResto')
+    axios.get(`${config.API_URL}/getResto`)
       .then((response) => {
         setDetails(response.data);
-        setStatus("");
+        setStatus('');
       })
       .catch((error) => {
-        setStatus("Network Error , plz check your internet connection ...")
+        setStatus('Network Error, please check your internet connection...');
         console.error('Error fetching data:', error);
       });
   }, []);
@@ -27,41 +27,41 @@ function UserHome() {
     return restaurant.name.toLowerCase().includes(searchTerm.toLowerCase());
   });
 
-
-
   return (
-    <>
-      <div className="container mx-auto my-4">
-        <div className="flex justify-center mb-4"> {/* Center the search box */}
+    <div className="min-h-screen bg-gray-50 py-6 px-4">
+      <div className="max-w-4xl mx-auto">
+        <div className="flex justify-center mb-6">
           <input
             type="text"
-            placeholder="Search..."
+            placeholder="Search for restaurants..."
             value={searchTerm}
             onChange={handleSearch}
-            className="border border-gray-300 rounded-md p-2"
+            className="border border-gray-300 rounded-lg p-3 w-full max-w-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
         </div>
-        <h1 className='font-bold'>{status}</h1>
-        {filteredRestaurants.map((restaurant, index) => (
-          <div key={index} className="bg-gray-200 p-6 mb-6 border-2 border-slate-600 rounded-md shadow-md">
-            <div className="mb-4">
-              <p className="text-2xl font-bold text-indigo-800">Name: {restaurant.name}</p>
+
+        <h1 className='text-center text-xl font-semibold mb-4'>{status}</h1>
+
+        {filteredRestaurants.length > 0 ? (
+          filteredRestaurants.map((restaurant, index) => (
+            <div key={index} className="bg-white p-6 mb-6 border border-gray-300 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 ease-in-out">
+              <h2 className="text-2xl font-bold text-indigo-700 mb-2">{restaurant.name}</h2>
+              <div className="mb-4">
+                <h3 className="text-lg font-semibold mb-1">Today's Menu</h3>
+                <ul className="list-disc pl-5 text-gray-700">
+                  {restaurant.menu.map((item, itemIndex) => (
+                    <li key={itemIndex} className="mb-1">{item}</li>
+                  ))}
+                </ul>
+              </div>
+              <p className="text-lg font-semibold text-indigo-700">Address: {restaurant.address}</p>
             </div>
-            <div>
-              <h1 className="text-lg font-semibold mb-2">Today's Menu</h1>
-              <ul className="list-disc pl-4">
-                {restaurant.menu.map((item, itemIndex) => (
-                  <li key={itemIndex} className="text-gray-700">{item}</li>
-                ))}
-              </ul>
-            </div>
-            <div className="mt-4">
-              <p className="text-2xl font-bold text-indigo-800">Address: {restaurant.address}</p>
-            </div>
-          </div>
-        ))}
+          ))
+        ) : (
+          <p className="text-center text-gray-600">No restaurants found</p>
+        )}
       </div>
-    </>
+    </div>
   );
 }
 
