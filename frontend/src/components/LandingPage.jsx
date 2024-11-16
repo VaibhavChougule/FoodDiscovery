@@ -38,17 +38,17 @@ function LandingPage() {
 
           {/* Welcome text */}
           <div className="text-center mb-8">
-            <p className="text-lg text-gray-600">Connecting food lovers and restaurant owners directly!</p>
+            <p className="text-lg text-gray-600">Connecting food lovers and Mess/Canteen owners directly!</p>
           </div>
 
           <div className="flex flex-col md:flex-row gap-12 justify-between">
             {/* Owner section */}
             <div className="md:w-1/2">
-              <h2 className="text-2xl font-semibold text-gray-800 mb-4">For Restaurant Owners</h2>
-              <p className="text-gray-600 mb-4">Are you a restaurant owner? Register your restaurant and share your menu with thousands of food lovers. Let us help you reach your customers directly.</p>
+              <h2 className="text-2xl font-semibold text-gray-800 mb-4">For Mess/Canteen Owners</h2>
+              <p className="text-gray-600 mb-4">Are you a Mess/Canteen owner? Register your restaurant and share your menu with thousands of food lovers. Let us help you reach your customers directly.</p>
               <Link to="/register">
                 <button className="bg-blue-600 hover:bg-blue-500 rounded-md px-6 py-3 text-white w-full md:w-auto shadow-lg transition-transform transform hover:scale-105">
-                  Restaurant Owner
+                  Mess/Canteen Owner
                 </button>
               </Link>
             </div>
@@ -56,7 +56,7 @@ function LandingPage() {
             {/* User section */}
             <div className="md:w-1/2">
               <h2 className="text-2xl font-semibold text-gray-800 mb-4">For Users</h2>
-              <p className="text-gray-600 mb-4">Looking for the best restaurants around you? Explore the registered restaurants, their daily menus, and more—all at one place!</p>
+              <p className="text-gray-600 mb-4">Looking for the best Mess/Canteen around you? Explore the registered ones, their daily menus, and more—all at one place!</p>
               <Link to="/user">
                 <button className="bg-teal-500 hover:bg-teal-400 rounded-md px-6 py-3 text-white w-full md:w-auto shadow-lg transition-transform transform hover:scale-105">
                   User
