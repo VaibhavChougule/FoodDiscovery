@@ -58,7 +58,7 @@ app.use('/' , acceptResto)
 
 app.use('/' , seeCookie)
 app.use('/' , menuCard)
-app.use('/' , otpRoutes)
+//app.use('/' , otpRoutes)
 //app.use('/' , verifyLogin)
 
 
