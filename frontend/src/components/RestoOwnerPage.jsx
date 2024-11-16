@@ -10,46 +10,89 @@ function RestoOwnerPage() {
   console.log(day, month, year);
 
   const [loading, setLoading] = useState('hidden');
-  let [items, setItems] = useState([]);
-  let menuItems = [];
-
+  const [items, setItems] = useState([]);
+  const [editIndex, setEditIndex] = useState(-1);
+  const [editValue, setEditValue] = useState('');
   const itemInput = useRef();
   const list = useRef();
 
   // Add menu items to the list
   function addItems() {
-    let val = itemInput.current.value;
-    console.log(val);
-    menuItems.push(val);
+    let val = itemInput.current.value.trim();
+    if (!val) return;
+    
+    if (editIndex >= 0) {
+      // Update item
+      const updatedItems = [...items];
+      updatedItems[editIndex] = val;
+      setItems(updatedItems);
+      setEditIndex(-1);
+      setEditValue('');
+    } else {
+      // Add new item
+      setItems([...items, val]);
+    }
 
-    console.log(menuItems);
-    let li = document.createElement('li');
-    li.className =
-      'bg-teal-500 text-white font-semibold rounded-md p-2 m-2 shadow-sm';
-    li.innerHTML = menuItems[menuItems.length - 1];
-    list.current.appendChild(li);
     itemInput.current.value = '';
+  }
+
+  // Delete an item from the list
+  function deleteItem(index) {
+    const updatedItems = items.filter((item, i) => i !== index);
+    setItems(updatedItems);
+  }
+
+  // Update item (edit mode)
+  function updateItem(index) {
+    setEditIndex(index);
+    setEditValue(items[index]);
+    itemInput.current.value = items[index];
   }
 
   // Send menu card to backend to save
   async function saveMenuItems() {
     setLoading('block');
-    const menucardres = await axios.post(`${config.API_URL}/menuCard`, {
-      menuCard: menuItems,
-      ck: document.cookie,
-    });
-    console.log(menucardres);
-    localStorage.setItem('lastMenu', menuItems);
-    alert('Saved successfully');
-    menuItems.length = 0;
-    while (list.current.firstChild) {
-      list.current.removeChild(list.current.firstChild);
+  
+    // Function to extract a specific cookie by name
+    const getCookie = (name) => {
+      const cookies = document.cookie.split(';');
+      for (const cookie of cookies) {
+        const [key, value] = cookie.trim().split('=');
+        if (key === name) return value;
+      }
+      return null; // Return null if the cookie is not found
+    };
+  
+    // Extract the 'owner' cookie
+    const ownerCookie = getCookie('owner');
+    console.log(ownerCookie , " Owner cokkie");
+  
+    if (!ownerCookie) {
+      alert('Owner cookie not found. Please log in again.');
+      setLoading('hidden');
+      return;
     }
-    location.reload();
+  
+    try {
+      const menucardres = await axios.post(`${config.API_URL}/menuCard`, {
+        menuCard: items,
+        ck: ownerCookie,
+      });
+      console.log(menucardres);
+      localStorage.setItem('lastMenu', items);
+      alert('Saved successfully');
+      setItems([]);
+    } catch (error) {
+      alert('Error while saving the menu. Please try again.');
+      console.error(error);
+    }
+  
+    setLoading('hidden');
   }
+  
+  
 
   let lastMenu = localStorage.getItem('lastMenu') || 'empty';
-  console.log(lastMenu);
   let a = lastMenu.split(',');
 
   // Go back to home function
@@ -77,7 +120,7 @@ function RestoOwnerPage() {
             onClick={goBackHome}
             className='bg-blue-500 text-white px-4 py-2 rounded-lg shadow-md hover:bg-blue-600'
           >
-          Home
+            Home
           </button>
           <button
             onClick={logout}
@@ -102,22 +145,42 @@ function RestoOwnerPage() {
             <input
               type='text'
               ref={itemInput}
-              placeholder='Add Menu Item'
+              placeholder='Add or Edit Menu Item'
               className='w-full p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-blue-500 shadow-sm'
               autoFocus
             />
             <button
               onClick={addItems}
-              className='bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg shadow-md'
+              className={`bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg shadow-md ${editIndex >= 0 ? 'bg-yellow-500 hover:bg-yellow-600' : ''}`}
             >
-              Add Item
+              {editIndex >= 0 ? 'Update Item' : 'Add Item'}
             </button>
           </div>
 
           <ol
             ref={list}
-            className='bg-gray-200 p-4 rounded-lg shadow-md mb-6 w-full text-gray-800'
-          ></ol>
+            className='bg-gray-200 p-4 rounded-lg shadow-md mb-6 w-full text-gray-800 max-h-48 overflow-y-auto'
+          >
+            {items.map((item, index) => (
+              <li key={index} className='flex justify-between items-center bg-teal-500 text-white font-semibold rounded-md p-2 m-2 shadow-sm'>
+                {index + 1}. {item}
+                <div>
+                  <button
+                    onClick={() => updateItem(index)}
+                    className='bg-yellow-500 text-white px-2 py-1 rounded-md ml-2 shadow-md hover:bg-yellow-600'
+                  >
+                    Edit
+                  </button>
+                  <button
+                    onClick={() => deleteItem(index)}
+                    className='bg-red-500 text-white px-2 py-1 rounded-md ml-2 shadow-md hover:bg-red-600'
+                  >
+                    Delete
+                  </button>
+                </div>
+              </li>
+            ))}
+          </ol>
 
           <button
             onClick={saveMenuItems}

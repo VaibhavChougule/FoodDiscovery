@@ -9,8 +9,8 @@ import config from '../config';
 
 const LoginPage = () => {
   const [visibility , setVisibility] = useState('hidden')
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const [username, setUsername] = useState('31962034');
+  const [password, setPassword] = useState('998877');
   const navigate = useNavigate() 
 
   const handleUsernameChange = (e) => {
@@ -22,7 +22,7 @@ const LoginPage = () => {
   };
 
   const handleLogin = async() => {
-    window.confirm('Are you sure to login')
+    //window.confirm('Are you sure to login')
     // Add your login logic here
     console.log('Logging in with:', { username, password });
     setVisibility('block')
@@ -57,6 +57,7 @@ const LoginPage = () => {
           id="username"
           name="username"
           value={username}
+          
           onChange={handleUsernameChange}
           style={styles.input}
           className='border-2 border-black rounded-sm'

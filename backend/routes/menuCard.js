@@ -13,11 +13,11 @@ router.post('/api/menuCard' , async (req , res)=>{
 
     let rawcookie = req.body.ck;
     let cookie = rawcookie.split('=')[1];
-    console.log("cookie is" , cookie);
+    console.log("cookie is" , rawcookie);
     let detailsofOwner;
     try{
 
-        detailsofOwner = await verifyOwner(cookie);
+        detailsofOwner = await verifyOwner(rawcookie);
         console.log(detailsofOwner)
     }
     catch{

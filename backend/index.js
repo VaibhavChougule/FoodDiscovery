@@ -12,6 +12,7 @@ import {router as RestoLogin} from './routes/RestoLogin.js'
 import { router as acceptResto } from './routes/verifyResto.js';
 import {router as menuCard} from './routes/menuCard.js'
 import {router as getResto} from './routes/getResto.js'
+import {router as otpRoutes} from './routes/otpRoutes.js'
 
 import {router as seeCookie} from './routes/seeOwner.js'
 //import {router as verifyLogin} from './routes/verifyLogin.js'
@@ -57,6 +58,7 @@ app.use('/' , acceptResto)
 
 app.use('/' , seeCookie)
 app.use('/' , menuCard)
+app.use('/' , otpRoutes)
 //app.use('/' , verifyLogin)
 
 

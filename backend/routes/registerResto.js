@@ -1,44 +1,53 @@
-import express from 'express'
+import express from 'express';
 import { pendingReq } from '../models/pendingReq.models.js';
+//import { acceptedRestos } from '../models/acceptedRestos.models.js'; // Assuming you have an acceptedRestos model
+import { Restorent } from '../models/Restorent.models.js';
 
 const router = express.Router();
 
-router.get('/api/registerResto' , async (req , res) =>{
-    console.log("check cookie",  req.body)
-    const data = await pendingReq.find({});
-    console.log(data)
-    res.json(data)
-    
-})
+router.get('/api/registerResto', async (req, res) => {
+  console.log("check cookie", req.body);
+  const data = await pendingReq.find({});
+  console.log(data);
+  res.json(data);
+});
 
+// Handling POST request
+router.post('/api/registerResto', async (req, res) => {
+  console.log("req", req.body);
 
-//handling POST request
+  const { restoName, restoAddress, restoOwner, ownerContact, restoPassword } = req.body;
 
-router.post('/api/registerResto' ,  (req , res) =>{
-    console.log("req" , req.body)
+  // Check if mobile number already exists in either the 'pendingReq' or 'acceptedRestos' collection
+  const existingPendingRequest = await pendingReq.findOne({ OwnerContact: ownerContact });
+  const existingAcceptedResto = await Restorent.findOne({ OwnerContact: ownerContact });
 
-    //creating a collection and saving into database on request
-    const data = req.body
-    const newPendingReq = new pendingReq({
-        RestoName:data.restoName,
-        RestoAddress:data.restoAddress,
-        RestoOwner:data.restoOwner,
-        OwnerContact:data.ownerContact,
-        RestoPassword:data.restoPassword
-    })
+  if (existingPendingRequest) {
+    return res.status(400).json({ message: "This mobile number is already in use for a pending restaurant registration." });
+  }
 
-    newPendingReq.save()
-    .then((savedData) =>{
-        console.log(savedData)
-        console.log("saved into db")
-    })
-    .catch((err) =>{
-        console.log("error while saving into db" , err)
-    })
+  if (existingAcceptedResto) {
+    return res.status(400).json({ message: "This mobile number is already registered with an accepted restaurant." });
+  }
 
+  // If mobile number doesn't exist in either collection, proceed to register
+  const newPendingReq = new pendingReq({
+    RestoName: restoName,
+    RestoAddress: restoAddress,
+    RestoOwner: restoOwner,
+    OwnerContact: ownerContact,
+    RestoPassword: restoPassword
+  });
 
-    res.send("done")
-})
+  try {
+    const savedData = await newPendingReq.save();
+    console.log(savedData);
+    console.log("saved into db");
+    res.send("Restaurant registration is successful. We'll review your request soon.");
+  } catch (err) {
+    console.log("Error while saving into db", err);
+    res.status(500).json({ message: "Error while registering restaurant." });
+  }
+});
 
-
-export {router}
+export { router };

@@ -5,10 +5,10 @@ import config from '../config';
 
 function RegisterResto() {
   const [restoName, setRestoName] = useState('');
-  const [restoAddress, setrestoAddress] = useState('');
-  const [restoOwner, setrestoOwner] = useState('');
-  const [ownerContact, setownerContact] = useState('');
-  const [restoPassword, setrestoPassword] = useState('');
+  const [restoAddress, setRestoAddress] = useState('');
+  const [restoOwner, setRestoOwner] = useState('');
+  const [ownerContact, setOwnerContact] = useState('');
+  const [restoPassword, setRestoPassword] = useState('');
 
   const navigate = useNavigate();
 
@@ -52,10 +52,16 @@ function RegisterResto() {
       return;
     }
 
+    // Validate password length
+    if (restoPassword.length <= 3) {
+      alert('Password length must be 4 or More.');
+      return;
+    }
+
     axios.post(`${config.API_URL}/registerResto`, formData)
-      .then((response) => {
+      .then(() => {
         alert('Successfully registered. We will contact you soon.');
-        navigate('/login'); // Redirect to login or any other page after successful registration
+        navigate('/login');
       })
       .catch((err) => {
         alert('Error while registering. Please try again.');
@@ -64,18 +70,18 @@ function RegisterResto() {
   };
 
   return (
-    <div className="h-screen w-screen bg-gradient-to-br from-blue-100 to-blue-300 flex justify-center items-center">
-      <div className="w-full sm:w-3/4 md:w-1/2 lg:w-1/3 bg-white rounded-lg shadow-lg p-8">
+    <div className="h-screen w-screen bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 flex justify-center items-center">
+      <div className="w-full sm:w-3/4 md:w-1/2 lg:w-1/3 bg-white rounded-lg shadow-xl p-8">
         <div className="flex justify-center mb-6">
           <p className="text-gray-600 mr-2">Already have an account?</p>
-          <Link to="/login" className="text-blue-500 hover:underline">Login</Link>
+          <Link to="/login" className="text-indigo-600 hover:underline font-semibold">Login</Link>
         </div>
 
         <form className="flex flex-col">
           <input
             type="text"
             name="restoName"
-            className="w-full p-3 mb-4 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full p-3 mb-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
             placeholder="Enter name of your restaurant"
             value={restoName}
             onChange={(e) => setRestoName(e.target.value)}
@@ -84,44 +90,44 @@ function RegisterResto() {
           <input
             type="text"
             name="address"
-            className="w-full p-3 mb-4 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full p-3 mb-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
             placeholder="Enter address of your restaurant"
             value={restoAddress}
-            onChange={(e) => setrestoAddress(e.target.value)}
+            onChange={(e) => setRestoAddress(e.target.value)}
           />
 
           <input
             type="text"
             name="ownerName"
-            className="w-full p-3 mb-4 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full p-3 mb-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
             placeholder="Enter name of restaurant owner"
             value={restoOwner}
-            onChange={(e) => setrestoOwner(e.target.value)}
+            onChange={(e) => setRestoOwner(e.target.value)}
           />
 
           <input
             type="text"
             name="ownerContact"
             maxLength="10"
-            className="w-full p-3 mb-4 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full p-3 mb-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
             placeholder="Enter mobile number of restaurant owner"
             value={ownerContact}
-            onChange={(e) => setownerContact(e.target.value)}
+            onChange={(e) => setOwnerContact(e.target.value)}
           />
 
           <input
             type="password"
             name="password"
-            className="w-full p-3 mb-6 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full p-3 mb-6 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
             placeholder="Create strong password"
             value={restoPassword}
-            onChange={(e) => setrestoPassword(e.target.value)}
+            onChange={(e) => setRestoPassword(e.target.value)}
           />
 
           <button
             type="button"
             onClick={handleRegister}
-            className="bg-green-500 hover:bg-green-600 text-white font-semibold py-3 rounded-lg shadow-md"
+            className="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 rounded-lg shadow-lg"
           >
             Register
           </button>
