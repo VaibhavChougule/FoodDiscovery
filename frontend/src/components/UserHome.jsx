@@ -55,7 +55,7 @@ function UserHome() {
     };
 
     try {
-      await axios.post(`${config.API_URL}/submitFeedback`, feedbackData);
+      //await axios.post(`${config.API_URL}/submitFeedback`, feedbackData);
       alert('Thank you for your feedback!');
       closeModal();
     } catch (error) {
