@@ -14,7 +14,9 @@ router.get('/api/getResto' , async (req , res) =>{
         let respond = {
         name:val.RestoName,
         address:val.RestoAddress,
-        menu:val.menus
+        menu:val.menus,
+        LastUpdateDate:val.updatedAt.toLocaleDateString().toString(),
+        LastUpdateTime:val.updatedAt.toLocaleTimeString()
     }
         detail.push(respond);
     })

@@ -10,15 +10,20 @@ import LoginResto from './components/LoginResto.jsx'
 import ControllPanel from './components/ControllPanel.jsx'
 import AdminLogin from './components/AdminLogin.jsx'
 import RestoOwnerPage from './components/RestoOwnerPage.jsx'
+import AboutUs from './components/AboutUs.jsx'
 
 const router = createBrowserRouter([
   {
     path:'/',
-    element:<LandingPage/>
+    element:<App/>
   },
   {
     path:'user',
     element:<UserHome/>
+  },
+  {
+    path:'About',
+    element:<AboutUs/>
   },
   {
     path:'register',

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import config from '../config';
+import Header from './Header';
 
 function UserHome() {
   const [details, setDetails] = useState([]);
@@ -15,6 +16,7 @@ function UserHome() {
     axios.get(`${config.API_URL}/getResto`)
       .then((response) => {
         setDetails(response.data);
+        console.log(response.data);
         setStatus('');
       })
       .catch((error) => {
@@ -69,8 +71,9 @@ function UserHome() {
   });
 
   return (
-    <div className="min-h-screen bg-gray-50 py-6 px-4">
-      <div className="max-w-4xl mx-auto">
+    <div className="min-h-screen bg-gradient-to-r from-orange-300 to-orange-200">
+      <Header/>
+      <div className="max-w-4xl mx-auto px-6 py-4">
         <div className="flex justify-center mb-6">
           <input
             type="text"
@@ -87,7 +90,7 @@ function UserHome() {
           filteredRestaurants.map((restaurant, index) => (
             <div
               key={index}
-              className="bg-white p-4 mb-4 border border-gray-300 rounded-lg shadow-md flex justify-between items-center hover:bg-indigo-100 transition duration-200"
+              className="bg-pink-100 p-4 mb-4 border border-gray-300 rounded-lg shadow-md flex justify-between items-center hover:bg-indigo-100 transition duration-200"
             >
               <h2 className="text-xl font-semibold text-indigo-700">
                 {restaurant.name}
@@ -107,7 +110,7 @@ function UserHome() {
         {/* Modal */}
         {showModal && selectedRestaurant && (
           <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-            <div className="bg-white w-11/12 max-w-lg p-6 rounded-lg shadow-lg">
+            <div className="bg-purple-100 w-11/12 max-w-lg p-6 rounded-lg shadow-lg border-2 border-green-500">
               <h2 className="text-2xl font-bold text-indigo-700 mb-4">
                 {selectedRestaurant.name}
               </h2>
@@ -119,6 +122,7 @@ function UserHome() {
                   ))}
                 </ul>
               </div>
+              <p className='font-serif'>Last Update:{selectedRestaurant.LastUpdateDate+",  "+selectedRestaurant.LastUpdateTime}</p>
               <p className="text-lg font-semibold text-indigo-700 mb-4">
                 Address: {selectedRestaurant.address}
               </p>
