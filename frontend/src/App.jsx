@@ -62,7 +62,7 @@ function App() {
       <div className="h-20"></div>
 
       {/* Hero Section */}
-      <section className="bg-[url(./public/assets/image.png)] bg-no-repeat bg-cover py-24 relative">
+      <section className="bg-[url(./assets/image.png)] bg-no-repeat bg-cover py-24 relative">
         <div className="absolute rounded-lg"></div>
         <div className="container mx-auto text-center relative z-10 px-4">
           <h1
