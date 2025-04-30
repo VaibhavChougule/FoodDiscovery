@@ -74,101 +74,155 @@ function RegisterResto() {
   };
 
   return (
-    <>
-    <div className="bg-[url('./assets/homepage.webp')] bg-cover bg-center h-screen w-screen overflow-hidden">
+    <div className="min-h-full bg-gradient-to-br from-orange-100 to-indigo-100">
       <Header />
-      <div className="h-screen w-screen bg-gradient-to-r from-slate-500 via-orange-200 to-slate-300 flex justify-center items-center overflow-x-hidden">
-        <div className="w-full sm:w-3/4 md:w-1/2 lg:w-1/3 bg-white rounded-lg shadow-xl p-8 overflow-hidden">
-          <div className="flex justify-center mb-6">
-            <p className="text-gray-600 mr-2">Already have an account?</p>
-            <Link to="/login" className="text-indigo-600 hover:underline font-semibold">
-              Login
-            </Link>
+      <div className="flex justify-center items-center min-h-screen py-4 px-4 sm:px-6 lg:px-8 mt-12">
+        <div className="w-full max-w-md bg-white rounded-xl shadow-2xl p-8 space-y-8">
+          <div className="text-center">
+            <h2 className="text-3xl font-extrabold text-gray-900 mb-2">Restaurant Registration</h2>
+            <p className="text-sm text-gray-600 border-b pb-4">Join our platform and grow your business</p>
           </div>
+          
+          <div className="mt-6">
+            <form className="space-y-3">
+              <div>
+                <label htmlFor="restoName" className="block text-sm font-medium text-gray-700">
+                  Restaurant Name
+                </label>
+                <div className="mt-1">
+                  <input
+                    id="restoName"
+                    name="restoName"
+                    type="text"
+                    required
+                    className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                    placeholder="Enter name of your restaurant"
+                    value={restoName}
+                    onChange={(e) => setRestoName(e.target.value)}
+                  />
+                </div>
+              </div>
 
-          <form className="flex flex-col">
-            <input
-              type="text"
-              name="restoName"
-              className="w-full p-3 mb-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
-              placeholder="Enter name of your restaurant"
-              value={restoName}
-              onChange={(e) => setRestoName(e.target.value)}
-            />
+              <div>
+                <label htmlFor="address" className="block text-sm font-medium text-gray-700">
+                  Restaurant Address
+                </label>
+                <div className="mt-1">
+                  <input
+                    id="address"
+                    name="address"
+                    type="text"
+                    required
+                    className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                    placeholder="Enter address of your restaurant"
+                    value={restoAddress}
+                    onChange={(e) => setRestoAddress(e.target.value)}
+                  />
+                </div>
+              </div>
 
-            <input
-              type="text"
-              name="address"
-              className="w-full p-3 mb-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
-              placeholder="Enter address of your restaurant"
-              value={restoAddress}
-              onChange={(e) => setRestoAddress(e.target.value)}
-            />
+              <div>
+                <label htmlFor="ownerName" className="block text-sm font-medium text-gray-700">
+                  Owner Name
+                </label>
+                <div className="mt-1">
+                  <input
+                    id="ownerName"
+                    name="ownerName"
+                    type="text"
+                    required
+                    className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                    placeholder="Enter name of restaurant owner"
+                    value={restoOwner}
+                    onChange={(e) => setRestoOwner(e.target.value)}
+                  />
+                </div>
+              </div>
 
-            <input
-              type="text"
-              name="ownerName"
-              className="w-full p-3 mb-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
-              placeholder="Enter name of restaurant owner"
-              value={restoOwner}
-              onChange={(e) => setRestoOwner(e.target.value)}
-            />
+              <div>
+                <label htmlFor="ownerContact" className="block text-sm font-medium text-gray-700">
+                  Mobile Number
+                </label>
+                <div className="mt-1">
+                  <input
+                    id="ownerContact"
+                    name="ownerContact"
+                    type="text"
+                    maxLength="10"
+                    required
+                    className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                    placeholder="Enter 10-digit mobile number"
+                    value={ownerContact}
+                    onChange={(e) => setOwnerContact(e.target.value)}
+                  />
+                </div>
+              </div>
 
-            <input
-              type="text"
-              name="ownerContact"
-              maxLength="10"
-              className="w-full p-3 mb-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
-              placeholder="Enter mobile number of restaurant owner"
-              value={ownerContact}
-              onChange={(e) => setOwnerContact(e.target.value)}
-            />
-
-            <input
-              type="password"
-              name="password"
-              className="w-full p-3 mb-6 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
-              placeholder="Create strong password"
-              value={restoPassword}
-              onChange={(e) => setRestoPassword(e.target.value)}
-            />
-
-            <button
-              type="button"
-              onClick={handleRegister}
-              className="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 rounded-lg shadow-lg flex justify-center items-center"
-              disabled={loading}
-            >
-              {loading ? (
-                <svg
-                  className="animate-spin h-5 w-5 text-white"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
+              <div>
+                <label htmlFor="password" className="block text-sm font-medium text-gray-700">
+                  Password
+                </label>
+                <div className="mt-1">
+                  <input
+                    id="password"
+                    name="password"
+                    type="password"
+                    required
+                    className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                    placeholder="Create a strong password (4+ characters)"
+                    value={restoPassword}
+                    onChange={(e) => setRestoPassword(e.target.value)}
+                  />
+                </div>
+              </div>
+              
+              <div>
+                <button
+                  type="button"
+                  onClick={handleRegister}
+                  disabled={loading}
+                  className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                 >
-                  <circle
-                    className="opacity-25"
-                    cx="12"
-                    cy="12"
-                    r="10"
-                    stroke="currentColor"
-                    strokeWidth="4"
-                  ></circle>
-                  <path
-                    className="opacity-75"
-                    fill="currentColor"
-                    d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
-                  ></path>
-                </svg>
-              ) : (
-                'Register'
-              )}
-            </button>
-          </form>
+                  {loading ? (
+                    <svg
+                      className="animate-spin h-5 w-5 text-white"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                    >
+                      <circle
+                        className="opacity-25"
+                        cx="12"
+                        cy="12"
+                        r="10"
+                        stroke="currentColor"
+                        strokeWidth="4"
+                      ></circle>
+                      <path
+                        className="opacity-75"
+                        fill="currentColor"
+                        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"
+                      ></path>
+                    </svg>
+                  ) : (
+                    'Register Restaurant'
+                  )}
+                </button>
+              </div>
+            </form>
+          </div>
+          
+          <div className="text-center mt-4">
+            <p className="text-sm text-gray-600">
+              Already have an account?{' '}
+              <Link to="/login" className="font-medium text-indigo-600 hover:text-indigo-500">
+                Sign in here
+              </Link>
+            </p>
+          </div>
         </div>
       </div>
-      </div>
-    </>
+    </div>
   );
 }
 
