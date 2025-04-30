@@ -4,6 +4,8 @@ import Header from "./components/Header.jsx";
 import RestaurantHighlight from "./components/RestaurantHighlight.jsx";
 import FeaturesSection from "./components/FeaturesSection.jsx";
 import Footer from "./components/Footer.jsx";
+// import bgImage from '../assets/image.png';
+
 
 function App() {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -62,7 +64,8 @@ function App() {
       <div className="h-20"></div>
 
       {/* Hero Section */}
-      <section className="bg-[url(/assets/image.png)] bg-no-repeat bg-cover py-24 relative">
+      <section className="bg-[url('/assets/image.png')] bg-no-repeat bg-cover py-24 relative">
+
         <div className="absolute rounded-lg"></div>
         <div className="container mx-auto text-center relative z-10 px-4">
           <h1
@@ -154,12 +157,12 @@ function App() {
                   transition-all duration-700 transform
                   ${restaurantsVisible ? 'translate-y-0 opacity-100' : 'translate-y-20 opacity-0'}`}
       >
-        <hr className="border-t border-gray-500 my-2"/>
+        <hr className="border-t border-gray-500 my-2" />
         <div className="">
           <h2 className="text-2xl font-bold text-black text-center animate-pulse">
             Today's Trending 🔥
           </h2>
-          <hr className="border-t border-gray-500 my-2"/>
+          <hr className="border-t border-gray-500 my-2" />
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mx-4 my-4">
             {[
               { name: "Hotel Atithi", cuisine: "Sinhgad road, Minakshipuram", image: "./assets/image.jpg", rating: 4.5, delay: "delay-100" },
