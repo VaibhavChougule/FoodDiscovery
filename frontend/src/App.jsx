@@ -4,7 +4,7 @@ import Header from "./components/Header.jsx";
 import RestaurantHighlight from "./components/RestaurantHighlight.jsx";
 import FeaturesSection from "./components/FeaturesSection.jsx";
 import Footer from "./components/Footer.jsx";
-// import bgImage from '../assets/image.png';
+import bgImage from './assets/image.png';
 
 
 function App() {
@@ -65,7 +65,7 @@ function App() {
 
       {/* Hero Section */}
       <section
-        style={{ backgroundImage: "url('/assets/image.png')" }}
+        style={{ backgroundImage: `url(${bgImage})` }}
         className="bg-no-repeat bg-cover py-24 relative"
       >
 
