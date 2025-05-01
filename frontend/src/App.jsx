@@ -163,7 +163,7 @@ function App() {
         <hr className="border-t border-gray-500 my-2" />
         <div className="">
           <h2 className="text-2xl font-bold text-black text-center animate-pulse">
-            Today's Trending 🔥
+            Featured Restaurants🔥
           </h2>
           <hr className="border-t border-gray-500 my-2" />
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mx-4 my-4">

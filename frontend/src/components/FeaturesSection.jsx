@@ -41,10 +41,10 @@ function FeaturesSection() {
               <FaShoppingCart size={24} />
             </div>
             <h3 className="text-lg font-semibold text-gray-700 mb-2">
-              Order Online
+              Latest Menu Updates
             </h3>
             <p className="text-gray-600">
-              Conveniently place orders from your favorite restaurants.
+              Conveniently search for your favourite food items.
             </p>
           </div>
           <div>
